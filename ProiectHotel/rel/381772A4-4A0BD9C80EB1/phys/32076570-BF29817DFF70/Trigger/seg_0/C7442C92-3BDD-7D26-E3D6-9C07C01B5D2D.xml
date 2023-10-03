@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="trigger_check_tip_camera" directorySegmentName="seg_0" id="C7442C92-3BDD-7D26-E3D6-9C07C01B5D2D">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-29 09:33:43 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[DECLARE
+BEGIN
+    IF :NEW.tipul NOT IN ('Dubla', 'Single', 'Tripla', 'Apartament') THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Tipul camerei nu este valid. Tipuri valide: dubla, single, tripla, apartament.');
+    END IF;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<table>BAD47B11-84E2-CF04-0D0C-7B3514E85282</table>
+</TriggerOraclev10g>

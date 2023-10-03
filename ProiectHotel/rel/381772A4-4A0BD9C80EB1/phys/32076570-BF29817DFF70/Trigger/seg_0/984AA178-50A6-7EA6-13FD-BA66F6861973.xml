@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="trigger_check_dates" directorySegmentName="seg_0" id="984AA178-50A6-7EA6-13FD-BA66F6861973">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-28 17:43:39 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[DECLARE
+BEGIN
+    IF :NEW.check_in < SYSDATE THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Data de check-in trebuie să fie în viitor.');
+    ELSIF :NEW.check_out < SYSDATE THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Data de check-out trebuie să fie în viitor.');
+    ELSIF :NEW.check_in >= :NEW.check_out THEN
+        RAISE_APPLICATION_ERROR(-20002, 'Data de check-in trebuie să fie înainte de data de check-out.');
+    END IF;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<state>ENABLE</state>
+<table>EC1BAD33-8385-09F0-342C-079D2E2EE6D5</table>
+</TriggerOraclev10g>

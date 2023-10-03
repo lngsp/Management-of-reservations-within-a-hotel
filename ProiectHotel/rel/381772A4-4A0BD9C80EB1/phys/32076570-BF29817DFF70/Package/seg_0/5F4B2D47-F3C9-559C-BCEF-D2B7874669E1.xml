@@ -1,0 +1,139 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="pachet_receptionist" directorySegmentName="seg_0" id="5F4B2D47-F3C9-559C-BCEF-D2B7874669E1">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-28 17:40:59 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE pachet_receptionist IS
+
+  PROCEDURE insert_receptionist(
+    p_id_angj        IN receptionist.id_angj%TYPE,
+    p_cnp_a          IN receptionist.cnp_a%TYPE,
+    p_nume           IN receptionist.nume%TYPE,
+    p_prenume        IN receptionist.prenume%TYPE,
+    p_adresa         IN receptionist.adresa%TYPE,
+    p_telefon        IN receptionist.telefon%TYPE,
+    p_salar          IN receptionist.salar%TYPE,
+    p_data_angajarii IN receptionist.data_angajarii%TYPE
+  );
+    
+  PROCEDURE update_salar_receptionist(
+    p_id_angj  IN receptionist.id_angj%TYPE,
+    p_salar    IN receptionist.salar%TYPE
+  );
+
+  PROCEDURE update_adresa_receptionist(
+    p_id_angj IN receptionist.id_angj%TYPE,
+    p_adresa   IN receptionist.adresa%TYPE
+  );
+
+  PROCEDURE update_telefon_receptionist(
+    p_id_angj   IN receptionist.id_angj%TYPE,
+    p_telefon   IN receptionist.telefon%TYPE
+  );
+
+  PROCEDURE delete_receptionist(p_id_angj IN receptionist.id_angj%TYPE);
+END pachet_receptionist;
+/
+
+CREATE OR REPLACE PACKAGE BODY pachet_receptionist IS
+    -----------------------------------------
+    ----------------PROCEDURI----------------
+    -----------------------------------------
+    -----------------------------------------
+    -----------------------------------------
+    
+    ----------------INSERT----------------
+  PROCEDURE insert_receptionist(
+    p_id_angj        IN receptionist.id_angj%TYPE,
+    p_cnp_a          IN receptionist.cnp_a%TYPE,
+    p_nume           IN receptionist.nume%TYPE,
+    p_prenume        IN receptionist.prenume%TYPE,
+    p_adresa         IN receptionist.adresa%TYPE,
+    p_telefon        IN receptionist.telefon%TYPE,
+    p_salar          IN receptionist.salar%TYPE,
+    p_data_angajarii IN receptionist.data_angajarii%TYPE
+  ) IS
+  BEGIN
+    INSERT INTO receptionist VALUES (
+      p_id_angj,
+      p_cnp_a,
+      p_nume,
+      p_prenume,
+      p_adresa,
+      p_telefon,
+      p_salar,
+      p_data_angajarii
+    );
+  EXCEPTION
+    WHEN OTHERS THEN
+      RAISE_APPLICATION_ERROR(-20002, &apos;Eroare la inserarea receptionistului. &apos; || SQLERRM);
+  END insert_receptionist;
+    
+      ----------------UPDATE----------------
+      --SALAR
+    PROCEDURE update_salar_receptionist(
+        p_id_angj  IN receptionist.id_angj%TYPE,
+        p_salar    IN receptionist.salar%TYPE
+      ) IS
+      BEGIN
+        UPDATE receptionist
+        SET salar = p_salar
+        WHERE id_angj = p_id_angj;
+    
+        IF SQL%ROWCOUNT = 0 THEN
+          RAISE_APPLICATION_ERROR(-20002, &apos;Receptionistul cu ID-ul &apos; || p_id_angj || &apos; nu este gasit.&apos;);
+        END IF;
+      EXCEPTION
+        WHEN OTHERS THEN
+          RAISE_APPLICATION_ERROR(-20002, &apos;Eroare la actualizarea salariului. &apos; || SQLERRM);
+    END update_salar_receptionist;
+
+    --ADRESA
+  PROCEDURE update_adresa_receptionist(
+    p_id_angj  IN receptionist.id_angj%TYPE,
+    p_adresa   IN receptionist.adresa%TYPE
+  ) IS
+  BEGIN
+    UPDATE receptionist
+    SET adresa = p_adresa
+    WHERE id_angj = p_id_angj;
+
+    IF SQL%ROWCOUNT = 0 THEN
+      RAISE_APPLICATION_ERROR(-20002, &apos;Receptionistul cu ID-ul &apos; || p_id_angj || &apos; nu este gasit.&apos;);
+    END IF;
+  EXCEPTION
+    WHEN OTHERS THEN
+      RAISE_APPLICATION_ERROR(-20002, &apos;Eroare la actualizarea adresei. &apos; || SQLERRM);
+  END update_adresa_receptionist;
+
+    --TELEFON
+  PROCEDURE update_telefon_receptionist(
+    p_id_angj  IN receptionist.id_angj%TYPE,
+    p_telefon  IN receptionist.telefon%TYPE
+  ) IS
+  BEGIN
+    UPDATE receptionist
+    SET telefon = p_telefon
+    WHERE id_angj = p_id_angj;
+
+    IF SQL%ROWCOUNT = 0 THEN
+      RAISE_APPLICATION_ERROR(-20002, &apos;Receptionistul cu ID-ul &apos; || p_id_angj || &apos; nu este gasit.&apos;);
+    END IF;
+  EXCEPTION
+    WHEN OTHERS THEN
+      RAISE_APPLICATION_ERROR(-20002, &apos;Eroare la actualizarea numarului de telefon. &apos; || SQLERRM);
+  END update_telefon_receptionist;
+    
+     ----------------DELETE----------------
+    PROCEDURE delete_receptionist(p_id_angj IN receptionist.id_angj%TYPE) IS
+        BEGIN
+            DELETE FROM receptionist WHERE id_angj = p_id_angj;
+            IF SQL%ROWCOUNT = 0 THEN
+                RAISE_APPLICATION_ERROR(-20002, &apos;Receptionistul cu ID-ul &apos; || p_id_angj || &apos; nu este gasit.&apos;);
+            END IF;
+        EXCEPTION
+            WHEN OTHERS THEN
+                RAISE_APPLICATION_ERROR(-20002, &apos;Eroare la stergerea receptionistului. &apos; || SQLERRM);
+    END delete_receptionist;
+END pachet_receptionist;</source>
+</PackageOracle>

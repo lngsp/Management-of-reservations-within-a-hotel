@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="670F6253-B360-609F-D05D-1223289BA7A2" name="Rezervare">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:11:10 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_rez" id="15E5B66E-C157-D519-1CA3-C22AC2E509C5">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:11:18 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>32674E16-8CD4-1F73-4061-5416E97280C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="check_in" id="F3EB89AF-539E-82F0-268B-275DA2EA3D1A">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:11:34 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="check_out" id="2E34E0E0-A97A-DEF5-A67F-AA0A4B9EB4F8">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:11:46 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nr_persoane" id="3F4BBA3B-1D3D-4434-EA5F-003A4F7D0259">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-28 06:57:10 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<ownDataTypeParameters>,1,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cnp_c" id="02DC5D91-F581-00E0-444C-48B0E7ACFDBF">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:33:48 UTC</createdTime>
+<generatorID>842864B3-E3CD-C092-8700-1304BEACAEC2</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<referedAttribute>D4061D20-CE35-321A-C428-783D25D007C3</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>D7A2533D-0D25-D50A-E03B-C76E97FDD33A</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_angj" id="B1294CAA-96C5-627D-829F-F2EDBB625F82">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:43:31 UTC</createdTime>
+<generatorID>708B9178-52B8-C349-E391-17DD63979A91</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<referedAttribute>1300C324-140F-329A-552C-80254336B7EC</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>32674E16-8CD4-1F73-4061-5416E97280C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nr_camera" id="C17A1866-7783-7C48-5F69-A0C18AB4B15D">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-28 06:59:06 UTC</createdTime>
+<generatorID>8CC291E1-E9A8-D6E1-0DD9-0716F40D91DC</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<referedAttribute>B9D409B6-E7F1-AC4A-7399-9BAD5BA71CCB</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="F86F91D7-B8C8-426D-9762-8F22A0BB54BB" name="Rezervare PK">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:11:26 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>15E5B66E-C157-D519-1CA3-C22AC2E509C5</attributeRef>
+<attributeRef>C17A1866-7783-7C48-5F69-A0C18AB4B15D</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

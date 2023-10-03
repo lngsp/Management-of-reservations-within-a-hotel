@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="50ED45CA-EA14-EFCA-7F74-CF498935138F" containerWithKeyObject="4F93B992-6EE6-1BC0-4D4B-98FB41FB92E4" localFKIndex="34E42FCC-A5DD-23FB-BB9E-CA7C4F0C5F24" name="Rezervare_Camera_FK">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>8CC291E1-E9A8-D6E1-0DD9-0716F40D91DC</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<referredTableLongName>Camera</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>15F84D0A-6761-6269-CD28-E50A8255CEFC</referredTableID>
+<keyObject>446F9D79-C7B1-67E5-9F57-3570A9130F11</keyObject>
+<referredKeyID>446F9D79-C7B1-67E5-9F57-3570A9130F11</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>nr_camera</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

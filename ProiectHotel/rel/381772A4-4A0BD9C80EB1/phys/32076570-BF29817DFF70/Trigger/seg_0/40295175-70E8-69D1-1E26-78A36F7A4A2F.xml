@@ -1,0 +1,35 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="trigger_update_suma_totala" directorySegmentName="seg_0" id="40295175-70E8-69D1-1E26-78A36F7A4A2F">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 10:51:43 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<actions>UPDATE</actions>
+<body><![CDATA[DECLARE
+  v_rezervare_id_rez factura.rezervare_id_rez%TYPE;
+  v_suma_totala factura.suma_totala%TYPE;
+BEGIN
+    -- Obtineti ID-ul rezervãrii asociate camerei
+    SELECT rezervare_id_rez INTO v_rezervare_id_rez
+    FROM factura
+    WHERE rezervare_camera_nr_camera = :new.nr_camera
+    AND ROWNUM = 1;
+    
+  -- Calculeazã noua sumã totalã
+  SELECT FLOOR((r.check_out - r.check_in) / 1) * :new.pret INTO v_suma_totala
+  FROM rezervare r
+  WHERE r.id_rez = v_rezervare_id_rez;
+    
+  -- Actualizeazã suma totalã pe factura
+  UPDATE factura
+  SET suma_totala = v_suma_totala
+  WHERE rezervare_camera_nr_camera = :new.nr_camera;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    NULL; -- Nu existã o rezervare asociatã camerei sau factura nu existã
+  WHEN OTHERS THEN
+    RAISE_APPLICATION_ERROR(-20004, 'Eroare în actualizarea sumei totale: ' || SQLERRM);
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<columns>43BFEFE6-7757-F8A0-AEBE-BC1BD664DC38</columns>
+<table>BAD47B11-84E2-CF04-0D0C-7B3514E85282</table>
+</TriggerOraclev10g>

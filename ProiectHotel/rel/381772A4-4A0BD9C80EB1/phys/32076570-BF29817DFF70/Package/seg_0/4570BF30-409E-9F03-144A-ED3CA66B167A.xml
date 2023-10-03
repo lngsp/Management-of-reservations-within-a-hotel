@@ -1,0 +1,139 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="pachet_factura" directorySegmentName="seg_0" id="4570BF30-409E-9F03-144A-ED3CA66B167A">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 10:50:02 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE pachet_factura IS
+  PROCEDURE insert_factura (
+    p_id_fact          IN factura.id_fact%TYPE,
+    p_data_facturarii  IN factura.data_facturarii%TYPE,
+    p_cif              IN factura.cif%TYPE,
+    p_metoda_de_plata  IN factura.metoda_de_plata%TYPE,
+    p_rezervare_id_rez IN factura.rezervare_id_rez%TYPE
+  );
+
+  PROCEDURE update_metoda_plata (
+    p_id_fact         IN factura.id_fact%TYPE,
+    p_metoda_de_plata IN factura.metoda_de_plata%TYPE
+  );
+  
+  PROCEDURE delete_factura (
+    p_id_fact IN factura.id_fact%TYPE
+  );
+  
+   PROCEDURE afisare_facturi;
+
+END pachet_factura;
+/
+
+CREATE OR REPLACE PACKAGE BODY pachet_factura IS
+  PROCEDURE insert_factura (
+    p_id_fact          IN factura.id_fact%TYPE,
+    p_data_facturarii  IN factura.data_facturarii%TYPE,
+    p_cif              IN factura.cif%TYPE,
+    p_metoda_de_plata  IN factura.metoda_de_plata%TYPE,
+    p_rezervare_id_rez IN factura.rezervare_id_rez%TYPE
+  ) IS
+  
+    v_check_in rezervare.check_in%type;
+    v_check_out rezervare.check_out%type;
+    v_rezervare_camera_nr_camera factura.rezervare_camera_nr_camera%TYPE;
+    v_diferenta_zile NUMBER := 0;
+    v_suma_totala factura.suma_totala%type := 0;
+    v_pret_camera camera.pret%type;
+    v_avans factura.avans%type := 0;
+  BEGIN
+  
+  --selecteaza nr camerei si perioada rezervata dupa id-ul rezervarii
+    SELECT r.camera_nr_camera, r.check_in, r.check_out 
+    INTO v_rezervare_camera_nr_camera, v_check_in, v_check_out
+    FROM rezervare r 
+    WHERE id_rez = p_rezervare_id_rez;
+    
+    --selecteaza pretului camerei alese
+    SELECT pret INTO v_pret_camera FROM camera WHERE nr_camera = v_rezervare_camera_nr_camera;
+    
+    --calculeaza diferenta
+    v_diferenta_zile := FLOOR(v_check_out - v_check_in); 
+    v_suma_totala := v_diferenta_zile * v_pret_camera;
+    v_avans := v_suma_totala * 0.20;
+    
+    INSERT INTO factura VALUES (
+      p_id_fact,
+      p_data_facturarii,
+      v_suma_totala,
+      v_avans,
+      p_cif,
+      p_metoda_de_plata,
+      p_rezervare_id_rez,
+      v_rezervare_camera_nr_camera
+    );
+    
+  EXCEPTION
+    WHEN DUP_VAL_ON_INDEX THEN
+      RAISE_APPLICATION_ERROR(-20000, &apos;Factura cu id-ul specificat există deja în baza de date.&apos;);
+    WHEN OTHERS THEN
+      RAISE_APPLICATION_ERROR(-20001, &apos;Eroare la inserarea facturii: &apos; || SQLERRM);
+  END insert_factura;
+  
+  PROCEDURE update_metoda_plata (
+    p_id_fact          IN factura.id_fact%TYPE,
+    p_metoda_de_plata  IN factura.metoda_de_plata%TYPE
+  ) IS
+  BEGIN
+    UPDATE factura
+    SET metoda_de_plata = p_metoda_de_plata
+    WHERE id_fact = p_id_fact;
+
+    IF SQL%ROWCOUNT = 0 THEN
+      RAISE_APPLICATION_ERROR(-20002, &apos;Nu exisa factura cu id-ul specificat: &apos; || p_id_fact);
+    END IF;
+  EXCEPTION
+    WHEN OTHERS THEN
+      RAISE_APPLICATION_ERROR(-20001, &apos;Eroare în actualizarea metodei de plata: &apos; || SQLERRM);
+  END update_metoda_plata;
+    
+    PROCEDURE delete_factura (
+        p_id_fact IN factura.id_fact%TYPE
+    ) IS
+    BEGIN
+        DELETE FROM factura WHERE id_fact = p_id_fact;
+        
+        IF SQL%ROWCOUNT = 0 THEN
+          RAISE_APPLICATION_ERROR(-20002, &apos;Nu exista factura cu id-ul: &apos; || p_id_fact);
+        END IF;
+        
+    EXCEPTION
+        WHEN OTHERS THEN
+            RAISE_APPLICATION_ERROR(-20001, &apos;Eroare in stergerea facturii: &apos; || SQLERRM);
+    END delete_factura;
+
+    ----------------AFISARI----------------
+    PROCEDURE afisare_facturi IS
+    BEGIN
+      DBMS_OUTPUT.PUT_LINE(&apos;Facturi existente:&apos;);
+      
+      FOR factura_rec IN (
+        SELECT f.id_fact, f.data_facturarii, f.cif, f.metoda_de_plata,
+               r.check_in, r.check_out, c.nume, c.prenume
+        FROM factura f
+        INNER JOIN rezervare r ON f.rezervare_id_rez = r.id_rez
+        INNER JOIN client c ON r.client_cnp_c = c.cnp_c
+      ) LOOP
+        DBMS_OUTPUT.PUT_LINE(&apos;ID Factura: &apos; || factura_rec.id_fact);
+        DBMS_OUTPUT.PUT_LINE(&apos;Data facturarii: &apos; || factura_rec.data_facturarii);
+        DBMS_OUTPUT.PUT_LINE(&apos;CIF: &apos; || factura_rec.cif);
+        DBMS_OUTPUT.PUT_LINE(&apos;Metoda de plata: &apos; || factura_rec.metoda_de_plata);
+        DBMS_OUTPUT.PUT_LINE(&apos;Check-in: &apos; || factura_rec.check_in);
+        DBMS_OUTPUT.PUT_LINE(&apos;Check-out: &apos; || factura_rec.check_out);
+        DBMS_OUTPUT.PUT_LINE(&apos;Nume Client: &apos; || factura_rec.nume);
+        DBMS_OUTPUT.PUT_LINE(&apos;Prenume Client: &apos; || factura_rec.prenume);
+        DBMS_OUTPUT.PUT_LINE(&apos;------------------------&apos;);
+      END LOOP;
+    EXCEPTION
+      WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE(&apos;Eroare: &apos; || SQLERRM);
+    END afisare_facturi;
+
+END pachet_factura;</source>
+</PackageOracle>

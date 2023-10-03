@@ -1,0 +1,219 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="pachet_rezervare" directorySegmentName="seg_0" id="9C0B7F61-6901-8A26-AA0A-1F7CE0FC9E93">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-28 17:41:26 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE pachet_rezervare IS
+
+    PROCEDURE insert_rezervare(
+        p_id_rez               IN rezervare.id_rez%TYPE,
+        p_check_in             IN rezervare.check_in%TYPE,
+        p_check_out            IN rezervare.check_out%TYPE,
+        p_nr_persoane          IN rezervare.nr_persoane%TYPE,
+        p_client_cnp_c         IN rezervare.client_cnp_c%TYPE,
+        p_receptionist_id_angj IN rezervare.receptionist_id_angj%TYPE
+    );
+
+    PROCEDURE update_rezervare_check_in(
+        p_id_rez               IN rezervare.id_rez%TYPE,
+        p_check_in             IN rezervare.check_in%TYPE,
+		p_cnp_c 			   IN rezervare.client_cnp_c%type
+    );
+    
+    PROCEDURE update_rezervare_check_out(
+        p_id_rez               IN rezervare.id_rez%TYPE,
+        p_check_out             IN rezervare.check_out%TYPE,
+		p_cnp_c 			   IN rezervare.client_cnp_c%type
+    );
+    
+    PROCEDURE delete_rezervare(
+        p_id_rez IN rezervare.id_rez%TYPE
+     );
+	 
+	PROCEDURE afisare_rezervari_client_suma;
+
+    FUNCTION get_camera_disponibile(
+        p_tipul_camerei     IN camera.tipul%type,
+        p_check_in          IN rezervare.check_in%type,
+        p_check_out         IN rezervare.check_out%type) RETURN camera.nr_camera%type;
+
+END pachet_rezervare;
+/
+
+CREATE OR REPLACE PACKAGE BODY pachet_rezervare IS
+    -----------------------------------------
+    ----------------PROCEDURI----------------
+    -----------------------------------------
+    -----------------------------------------
+    -----------------------------------------
+    
+    ----------------INSERT----------------
+    PROCEDURE insert_rezervare(
+    p_id_rez               IN rezervare.id_rez%TYPE,
+    p_check_in             IN rezervare.check_in%TYPE,
+    p_check_out            IN rezervare.check_out%TYPE,
+    p_nr_persoane          IN rezervare.nr_persoane%TYPE,
+    p_client_cnp_c         IN rezervare.client_cnp_c%TYPE,
+    p_receptionist_id_angj IN rezervare.receptionist_id_angj%TYPE
+    ) IS
+        v_tip_camera camera.tipul%type;
+        v_nr_camera_disponibila camera.nr_camera%TYPE;
+    BEGIN
+        
+        IF p_nr_persoane &gt; 4 THEN
+            RAISE_APPLICATION_ERROR(-20000,&apos;Numarul de persoane &apos; || p_nr_persoane || &apos; este prea mare pentru o singura camera!&apos;);
+        ELSE
+            IF p_nr_persoane = 1 THEN
+                v_tip_camera := &apos;Single&apos;;
+            ELSIF p_nr_persoane = 2 THEN
+                v_tip_camera := &apos;Dubla&apos;;
+            ELSIF p_nr_persoane = 3 THEN
+                v_tip_camera := &apos;Tripla&apos;;
+            ELSIF p_nr_persoane = 4 THEN
+                v_tip_camera := &apos;Apartament&apos;;
+            END IF;
+           
+           v_nr_camera_disponibila := get_camera_disponibile(v_tip_camera, p_check_in, p_check_out);
+           
+            IF v_nr_camera_disponibila IS NULL THEN
+                RAISE_APPLICATION_ERROR(-20001, &apos;Nu sunt camere disponibile de tipul &apos; || v_tip_camera || &apos; in perioada &apos; || p_check_in || &apos; - &apos; || p_check_out || &apos;!&apos;);
+            ELSE
+                INSERT INTO rezervare VALUES (p_id_rez, p_check_in, p_check_out, p_nr_persoane, p_client_cnp_c, p_receptionist_id_angj, v_nr_camera_disponibila);
+            END IF;
+        END IF;
+    
+    EXCEPTION
+      WHEN DUP_VAL_ON_INDEX THEN
+        RAISE_APPLICATION_ERROR(-20001, &apos;Rezervarea cu ID-ul specificat există deja în baza de date.&apos;);
+      WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20000, &apos;Eroare necunoscută: &apos; || SQLERRM);
+    END insert_rezervare;
+
+    ----------------UPDATE----------------
+    ---CHECK-IN---
+    PROCEDURE update_rezervare_check_in(
+		p_id_rez    IN rezervare.id_rez%TYPE,
+		p_check_in  IN rezervare.check_in%TYPE,
+		p_cnp_c     IN rezervare.client_cnp_c%TYPE
+	) IS
+		v_cnp rezervare.client_cnp_c%TYPE;
+	BEGIN
+		-- Verificați dacă CNP-ul dat este diferit de cel din rezervare
+		SELECT client_cnp_c INTO v_cnp
+		FROM rezervare
+		WHERE id_rez = p_id_rez;
+		
+		IF v_cnp &lt;&gt; p_cnp_c THEN
+			RAISE_APPLICATION_ERROR(-20003, &apos;CNP-ul specificat nu corespunde CNP-ului asociat rezervării.&apos;);
+		END IF;
+		
+		-- Actualizați rezervarea
+		UPDATE rezervare
+		SET check_in = p_check_in
+		WHERE id_rez = p_id_rez AND client_cnp_c = p_cnp_c;
+
+		IF SQL%NOTFOUND THEN
+			RAISE_APPLICATION_ERROR(-20002, &apos;Nu există nicio rezervare cu ID-ul specificat în baza de date.&apos;);
+		END IF;
+	EXCEPTION
+		WHEN OTHERS THEN
+			RAISE_APPLICATION_ERROR(-20000, &apos;Eroare necunoscută: &apos; || SQLERRM);
+	END update_rezervare_check_in;
+
+
+    ---CHECK-OUT---
+    PROCEDURE update_rezervare_check_out(
+        p_id_rez               IN rezervare.id_rez%TYPE,
+        p_check_out             IN rezervare.check_out%TYPE,
+		p_cnp_c 			   IN rezervare.client_cnp_c%type
+    ) IS
+		v_cnp rezervare.client_cnp_c%TYPE;
+    BEGIN
+		-- Verificați dacă CNP-ul dat este diferit de cel din rezervare
+		SELECT client_cnp_c INTO v_cnp
+		FROM rezervare
+		WHERE id_rez = p_id_rez;
+		
+		IF v_cnp &lt;&gt; p_cnp_c THEN
+			RAISE_APPLICATION_ERROR(-20003, &apos;CNP-ul specificat nu corespunde CNP-ului asociat rezervării.&apos;);
+		END IF;
+		
+		
+        UPDATE rezervare r SET r.check_out = p_check_out WHERE r.id_rez = p_id_rez AND r.client_cnp_c = p_cnp_c;
+        IF SQL%NOTFOUND THEN
+            RAISE_APPLICATION_ERROR(-20002, &apos;Nu există nicio rezervare cu ID-ul specificat în baza de date.&apos;);
+          END IF;
+    EXCEPTION
+      WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20000, &apos;Eroare necunoscută: &apos; || SQLERRM);
+    END update_rezervare_check_out;
+    
+    ----------------DELETE----------------
+    PROCEDURE delete_rezervare(p_id_rez IN rezervare.id_rez%TYPE) IS
+    BEGIN
+      DELETE FROM rezervare
+      WHERE id_rez = p_id_rez;
+    
+      IF SQL%NOTFOUND THEN
+        RAISE_APPLICATION_ERROR(-20003, &apos;Nu există nicio rezervare cu ID-ul specificat în baza de date.&apos;);
+      END IF;
+    EXCEPTION
+      WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20000, &apos;Eroare necunoscută: &apos; || SQLERRM);
+    END delete_rezervare;
+	
+	----------------AFISARI----------------
+	PROCEDURE afisare_rezervari_client_suma IS
+	BEGIN
+	  FOR c1_record IN (SELECT c.cnp_c AS cnp, c.nume AS nume, c.prenume AS prenume, r.id_rez AS idR, sum(f.suma_totala) AS suma
+						FROM client c, rezervare r, factura f
+						WHERE c.cnp_c = r.client_cnp_c AND r.id_rez = f.rezervare_id_rez
+						GROUP BY c.cnp_c, c.nume, c.prenume, r.id_rez) LOOP
+		dbms_output.put_line(&apos;ID rezervare: &apos; || c1_record.idR || &apos; Nume: &apos; || c1_record.nume || &apos; &apos; || c1_record.prenume || &apos; Suma totala: &apos; || c1_record.suma);
+	  END LOOP;
+	EXCEPTION
+	  WHEN NO_DATA_FOUND THEN
+		DBMS_OUTPUT.PUT_LINE(&apos;Nu exista rezervari!&apos;);
+	  WHEN OTHERS THEN
+		DBMS_OUTPUT.PUT_LINE(&apos;Eroare: &apos; || SQLERRM);
+	END afisare_rezervari_client_suma;
+    
+    
+    -----------------------------------------
+    ----------------FUNCTII----------------
+    -----------------------------------------
+    
+    --Returneaza camera disponibila conform tipului dat si perioadei de rezervare
+    FUNCTION get_camera_disponibile(
+        p_tipul_camerei     IN camera.tipul%type,
+        p_check_in          IN rezervare.check_in%type,
+        p_check_out         IN rezervare.check_out%type) RETURN camera.nr_camera%type IS
+    
+        v_nr_camera camera.nr_camera%type;
+    
+    BEGIN
+        SELECT c.nr_camera
+        INTO v_nr_camera
+        FROM camera c
+        WHERE c.tipul = p_tipul_camerei
+          AND NOT EXISTS (
+            SELECT 1
+            FROM rezervare r
+            WHERE r.check_in &lt;= p_check_out
+              AND r.check_out &gt;= p_check_in
+              AND r.camera_nr_camera = c.nr_camera
+          )
+          FETCH FIRST 1 ROW ONLY;
+          
+    
+        RETURN v_nr_camera;
+    
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RETURN NULL;
+    
+    END get_camera_disponibile;
+
+        
+END pachet_rezervare;</source>
+</PackageOracle>

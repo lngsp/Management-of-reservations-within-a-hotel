@@ -1,0 +1,69 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="15F84D0A-6761-6269-CD28-E50A8255CEFC" name="Camera">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>9AEC5B5E-01D5-E4B2-6AEE-057E09291BBD</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="nr_camera" id="EF2AB2F5-E827-10BB-59FD-EF2D82B5D89D">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>B9D409B6-E7F1-AC4A-7399-9BAD5BA71CCB</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="tipul" id="A364AA49-D3FA-1226-9353-E5A142658D6D">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>B0E8C3B5-F260-9066-517C-C515785C95D4</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<constraintName>tip_camera_ck</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<listOfValues>
+<valueDef value="Apartament" description="4 locuri"/>
+<valueDef value="Dubla" description="2 locuri"/>
+<valueDef value="Single" description="1 loc"/>
+<valueDef value="Tripla" description="3 locuri"/>
+</listOfValues>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pret" id="E92AB11D-EDD0-585A-12B8-AEBC3B9D5F4E">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>513A2C6D-A61C-E82B-ABF3-5ACC2111C19E</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="446F9D79-C7B1-67E5-9F57-3570A9130F11" name="Camera_PK">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>54943A78-1C62-7AC8-90E8-43B16B05B158</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EF2AB2F5-E827-10BB-59FD-EF2D82B5D89D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

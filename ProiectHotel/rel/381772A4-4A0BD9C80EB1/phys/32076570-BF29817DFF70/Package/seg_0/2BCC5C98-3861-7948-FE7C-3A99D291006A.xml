@@ -1,0 +1,221 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="pachet_client" directorySegmentName="seg_0" id="2BCC5C98-3861-7948-FE7C-3A99D291006A">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-29 10:09:52 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE pachet_client AS
+  PROCEDURE insert_client(
+    p_cnp_c   IN client.cnp_c%TYPE,
+    p_nume    IN client.nume%TYPE,
+    p_prenume IN client.prenume%TYPE,
+    p_telefon IN client.telefon%TYPE,
+    p_email   IN client.email%TYPE,
+    p_adresa  IN client.adresa%TYPE,
+    p_varsta  IN client.varsta%TYPE
+  );
+
+   PROCEDURE update_client_telefon(
+    p_cnp_c   IN client.cnp_c%TYPE,
+    p_telefon IN client.telefon%TYPE
+  );
+
+  PROCEDURE update_client_email(
+    p_cnp_c   IN client.cnp_c%TYPE,
+    p_email   IN client.email%TYPE
+  );
+
+  PROCEDURE update_client_nume(
+    p_cnp_c   IN client.cnp_c%TYPE,
+    p_nume    IN client.nume%TYPE
+  );
+
+  PROCEDURE update_client_adresa(
+    p_cnp_c   IN client.cnp_c%TYPE,
+    p_adresa  IN client.adresa%TYPE
+  );
+
+  PROCEDURE delete_client(
+    p_cnp_c IN client.cnp_c%TYPE
+  );
+  
+  PROCEDURE afisare_rezervari_client_perioada(v_cnp IN client.cnp_c%TYPE);
+  
+  FUNCTION has_reservations(p_cnp IN client.cnp_c%TYPE) RETURN BOOLEAN;
+  
+
+END pachet_client;
+/
+
+CREATE OR REPLACE PACKAGE BODY pachet_client AS
+    ----------------INSERT----------------
+  PROCEDURE insert_client(
+    p_cnp_c   IN client.cnp_c%TYPE,
+    p_nume    IN client.nume%TYPE,
+    p_prenume IN client.prenume%TYPE,
+    p_telefon IN client.telefon%TYPE,
+    p_email   IN client.email%TYPE,
+    p_adresa  IN client.adresa%TYPE,
+    p_varsta  IN client.varsta%TYPE
+  )
+  AS
+  BEGIN
+    INSERT INTO client (cnp_c, nume, prenume, telefon, email, adresa, varsta)
+    VALUES (p_cnp_c, p_nume, p_prenume, p_telefon, p_email, p_adresa, p_varsta);
+  EXCEPTION
+    WHEN DUP_VAL_ON_INDEX THEN
+      RAISE_APPLICATION_ERROR(-20001, &apos;Clientul cu CNP-ul specificat există deja în baza de date.&apos;);
+	WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20000, &apos;Eroare necunoscutÄ?: &apos; || SQLERRM);
+  END insert_client;
+
+    ----------------UPDATE TELEFON----------------
+   PROCEDURE update_client_telefon(
+    p_cnp_c   IN client.cnp_c%TYPE,
+    p_telefon IN client.telefon%TYPE
+  )
+  AS
+  BEGIN
+    UPDATE client
+    SET telefon = p_telefon
+    WHERE cnp_c = p_cnp_c;
+    IF SQL%NOTFOUND THEN
+      RAISE_APPLICATION_ERROR(-20002, &apos;Nu există niciun client cu CNP-ul specificat în baza de date.&apos;);
+    END IF;
+  END update_client_telefon;
+
+ ----------------UPDATE EMAIL----------------
+  PROCEDURE update_client_email(
+    p_cnp_c   IN client.cnp_c%TYPE,
+    p_email   IN client.email%TYPE
+  )
+  AS
+  BEGIN
+    UPDATE client
+    SET email = p_email
+    WHERE cnp_c = p_cnp_c;
+    IF SQL%NOTFOUND THEN
+      RAISE_APPLICATION_ERROR(-20002, &apos;Nu există niciun client cu CNP-ul specificat în baza de date.&apos;);
+    END IF;
+  END update_client_email;
+
+ ----------------UPDATE NUME----------------
+  PROCEDURE update_client_nume(
+    p_cnp_c   IN client.cnp_c%TYPE,
+    p_nume    IN client.nume%TYPE
+  )
+  AS
+  BEGIN
+    UPDATE client
+    SET nume = p_nume
+    WHERE cnp_c = p_cnp_c;
+    IF SQL%NOTFOUND THEN
+      RAISE_APPLICATION_ERROR(-20002, &apos;Nu există niciun client cu CNP-ul specificat în baza de date.&apos;);
+    END IF;
+  END update_client_nume;
+
+ ----------------UPDATE ADRESA----------------
+  PROCEDURE update_client_adresa(
+    p_cnp_c   IN client.cnp_c%TYPE,
+    p_adresa  IN client.adresa%TYPE
+  )
+  AS
+  BEGIN
+    UPDATE client
+    SET adresa = p_adresa
+    WHERE cnp_c = p_cnp_c;
+    IF SQL%NOTFOUND THEN
+      RAISE_APPLICATION_ERROR(-20002, &apos;Nu există niciun client cu CNP-ul specificat în baza de date.&apos;);
+    END IF;
+  END update_client_adresa;
+
+
+ ----------------DELETE----------------
+  PROCEDURE delete_client(
+    p_cnp_c IN client.cnp_c%TYPE
+  )
+  AS
+  BEGIN
+    DELETE FROM client
+    WHERE cnp_c = p_cnp_c;
+    IF SQL%NOTFOUND THEN
+      RAISE_APPLICATION_ERROR(-20003, &apos;Nu există niciun client cu CNP-ul specificat în baza de date.&apos;);
+    END IF;
+  EXCEPTION
+    WHEN OTHERS THEN
+      RAISE_APPLICATION_ERROR(-20004, &apos;A apărut o eroare la ?tergerea clientului.&apos;);
+  END delete_client;
+  
+----------------AFISARI----------------
+	PROCEDURE afisare_rezervari_client_perioada(v_cnp IN client.cnp_c%TYPE) IS
+	  TYPE client_rez_typ IS RECORD (nume client.nume%TYPE,
+										prenume client.prenume%TYPE,
+										check_in rezervare.check_in%TYPE,
+										check_out rezervare.check_out%TYPE,
+										suma_totala factura.suma_totala%TYPE);
+		
+	  TYPE client_rez IS REF CURSOR RETURN client_rez_typ;
+	  vc_client client_rez;
+	  rc_afis_client client_rez_typ;
+	  v_count NUMBER :=0;
+	BEGIN
+		-- Verificare existenta CNP-ului în tabela client
+	  SELECT COUNT(*) INTO v_count
+	  FROM client
+	  WHERE cnp_c = v_cnp;
+	  
+	  IF v_count &gt; 0 THEN
+		dbms_output.put_line(&apos;Rezervarile facute de client: &apos;);
+		  OPEN vc_client FOR
+				SELECT c.nume, c.prenume, r.check_in, r.check_out, f.suma_totala
+				FROM client c, rezervare r, factura f
+				WHERE c.cnp_c = v_cnp AND c.cnp_c = r.client_cnp_c 
+					AND r.id_rez = f.rezervare_id_rez;
+				
+		  LOOP
+			FETCH vc_client INTO rc_afis_client;
+			EXIT WHEN (vc_client%NOTFOUND);
+			dbms_output.put_line(&apos;Nume: &apos; || rc_afis_client.nume || &apos; Prenume: &apos; || rc_afis_client.prenume || &apos; Check-in: &apos; 
+					|| rc_afis_client.check_in || &apos; Check-out: &apos; || rc_afis_client.check_out 
+					|| &apos; Suma totala : &apos; || rc_afis_client.suma_totala );
+		  END LOOP;
+		  CLOSE vc_client;
+	  ELSE
+		RAISE_APPLICATION_ERROR(-20005, &apos;Nu există niciun client cu CNP-ul specificat în baza de date.&apos;);
+	  END IF;
+
+	EXCEPTION
+	  WHEN OTHERS THEN
+		DBMS_OUTPUT.PUT_LINE(&apos;Eroare: &apos; || SQLERRM);
+	END afisare_rezervari_client_perioada;
+	
+	-----------------------------------------
+    ----------------FUNCTII----------------
+    -----------------------------------------
+	
+	FUNCTION has_reservations(p_cnp IN client.cnp_c%TYPE) RETURN BOOLEAN IS
+		v_count NUMBER;
+	BEGIN
+		SELECT COUNT(*)
+		INTO v_count
+		FROM rezervare
+		WHERE client_cnp_c = p_cnp;
+
+		IF v_count &gt; 0 THEN
+			RETURN TRUE; -- Clientul are rezervări
+		ELSE
+			RETURN FALSE; -- Clientul nu are rezervări
+		END IF;
+	END has_reservations;
+
+
+END pachet_client;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="pachet_client" id="2BCC5C98-3861-7948-FE7C-3A99D291006A">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-29 12:39:33 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE BODY pachet_client AS 
+BEGIN
+ NULL;
+END;</source>
+</body>
+</PackageOracle>

@@ -1,0 +1,146 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6529EABA-2298-9DED-D5F5-6B94243FD4C1" name="Receptionist">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:18:35 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_angj" id="1300C324-140F-329A-552C-80254336B7EC">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:42:39 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>32674E16-8CD4-1F73-4061-5416E97280C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cnp_a" id="64401680-A58B-9A22-82C6-087F04F154E8">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:18:40 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>D7A2533D-0D25-D50A-E03B-C76E97FDD33A</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nume" id="14C7CC70-A943-5CF1-9E87-36E5001191D8">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:18:58 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>93EBB745-944F-BF6A-7692-6C3EFAB8249E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="prenume" id="586A96C1-5020-8D5E-04E9-19377B6DDB2B">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:19:05 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>93EBB745-944F-BF6A-7692-6C3EFAB8249E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="adresa" id="B8E986DF-B17C-633B-2655-8B416C7C33FE">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:23:16 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D6DD8810-6B5E-4CF4-8C59-DEB3791D2CBA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="telefon" id="682B083E-4A2A-C3DB-1AD8-4FC270F14285">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:23:22 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>2ABDCA09-CDC1-8D4E-1305-680B3FDFA46D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="salar" id="C91691B2-1A74-061D-2892-6948C0712402">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:23:30 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<constraintName>salar_ck</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="salar &gt; 500"/>
+</checkConstraint>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="data_angajarii" id="E945D209-80EE-CBC1-3A75-896FDA6ED24E">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:23:47 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="C225FDF2-75E7-1891-AAAC-DCAEC60D6D96" name="Angajat PK">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 08:18:44 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>1300C324-140F-329A-552C-80254336B7EC</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="0DD6E195-03BC-ADC0-B08D-17ABE6841DBE" name="telefon_angj_uk">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 09:14:41 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<newElementsIDs>682B083E-4A2A-C3DB-1AD8-4FC270F14285</newElementsIDs>
+<usedAttributes>
+<attributeRef>682B083E-4A2A-C3DB-1AD8-4FC270F14285</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

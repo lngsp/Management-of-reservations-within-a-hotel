@@ -1,0 +1,147 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="012ABAF4-38E6-A58E-059F-FB9BAE182F6B" name="Client">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 07:48:57 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="cnp_c" id="D4061D20-CE35-321A-C428-783D25D007C3">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 07:54:34 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>D7A2533D-0D25-D50A-E03B-C76E97FDD33A</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nume" id="7CEF2879-8699-DC4A-A536-0D52759980D1">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 07:57:54 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>93EBB745-944F-BF6A-7692-6C3EFAB8249E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="prenume" id="E74B6080-AD1D-B6D2-4E76-0EA2962BAFA9">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 07:58:04 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>93EBB745-944F-BF6A-7692-6C3EFAB8249E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="telefon" id="E242F2C6-45CF-4ACF-0494-4631456320B0">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 07:58:12 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>2ABDCA09-CDC1-8D4E-1305-680B3FDFA46D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="email" id="02D81823-10BE-C5C5-6CBC-40CE2BAA5CAC">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 07:58:24 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<constraintName>email_c_ck</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="regexp_like(email, &apos;[a-z0-9._%-]+@[a-z0-9._%-]+\.[a-z]{2,4}&apos;)"/>
+</checkConstraint>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="adresa" id="3F43354A-A870-7338-B507-A550D601D626">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 07:58:31 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D6DD8810-6B5E-4CF4-8C59-DEB3791D2CBA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="varsta" id="5F937206-3856-9795-26A5-E8667FDE2319">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 07:59:26 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9371624C-E05C-8A1A-B1C6-0E886B248F2C" name="Client PK">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 07:57:45 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>D4061D20-CE35-321A-C428-783D25D007C3</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="EE02B1EB-2CC1-30B9-813B-36C0FF158757" name="telefon_client_uk">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 09:13:27 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<newElementsIDs>E242F2C6-45CF-4ACF-0494-4631456320B0</newElementsIDs>
+<usedAttributes>
+<attributeRef>E242F2C6-45CF-4ACF-0494-4631456320B0</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="4A485F26-312E-7D2C-A56B-C802E34BD0B4" name="email_client_uk">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 09:14:03 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<newElementsIDs>02D81823-10BE-C5C5-6CBC-40CE2BAA5CAC</newElementsIDs>
+<usedAttributes>
+<attributeRef>02D81823-10BE-C5C5-6CBC-40CE2BAA5CAC</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

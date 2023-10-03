@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="pachet_camera" directorySegmentName="seg_0" id="AB428425-5CFD-69A9-67E4-F1A0A1FDD06B">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-29 10:09:33 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE pachet_camera AS
+  PROCEDURE insert_camera(
+    p_nr_camera       IN camera.nr_camera%TYPE,
+    p_tipul           IN camera.tipul%TYPE,
+    p_pret            IN camera.pret%TYPE
+  );
+
+  PROCEDURE update_camera(
+    p_nr_camera       IN camera.nr_camera%TYPE,
+    p_pret_nou        IN camera.pret%TYPE
+  );
+
+  PROCEDURE delete_camera(
+    p_nr_camera IN camera.nr_camera%TYPE
+  );
+
+  PROCEDURE afisare_camere_indisponibile;
+  
+  FUNCTION get_tip_camera(p_nr_camera IN NUMBER) RETURN camera.tipul%type;
+
+END pachet_camera;
+/
+
+CREATE OR REPLACE PACKAGE BODY pachet_camera AS
+    -----------------------------------------
+    ----------------PROCEDURI----------------
+    -----------------------------------------
+	
+	----------------INSERT----------------
+    PROCEDURE insert_camera(
+        p_nr_camera       IN camera.nr_camera%TYPE,
+        p_tipul           IN camera.tipul%TYPE,
+        p_pret            IN camera.pret%TYPE
+    )
+    AS
+    BEGIN
+        INSERT INTO camera VALUES (p_nr_camera, p_tipul, p_pret);
+        
+        EXCEPTION
+            WHEN DUP_VAL_ON_INDEX THEN
+                RAISE_APPLICATION_ERROR(-20001, &apos;Camera cu numarul specificat există deja în baza de date.&apos;);
+			WHEN OTHERS THEN
+				RAISE_APPLICATION_ERROR(-20000, &apos;Eroare necunoscută: &apos; || SQLERRM);
+    END insert_camera;
+
+    ----------------UPDATE----------------
+    PROCEDURE update_camera(
+        p_nr_camera       IN camera.nr_camera%TYPE,
+        p_pret_nou        IN camera.pret%TYPE
+    )
+    AS
+    BEGIN
+        UPDATE camera
+        SET pret = p_pret_nou
+        WHERE nr_camera = p_nr_camera;
+        
+        IF SQL%NOTFOUND THEN
+            RAISE_APPLICATION_ERROR(-20002, &apos;Nu există nicio camera cu numarul specificat în baza de date.&apos;);
+        END IF;
+    END update_camera;
+
+    ----------------DELETE----------------
+    PROCEDURE delete_camera(
+        p_nr_camera IN camera.nr_camera%TYPE
+    )
+    AS
+    BEGIN
+        DELETE FROM camera
+        WHERE nr_camera = p_nr_camera;
+        
+        IF SQL%NOTFOUND THEN
+          RAISE_APPLICATION_ERROR(-20003, &apos;Nu exista nicio camera cu numarul specificat in baza de date.&apos;);
+        END IF;
+    
+    END delete_camera;
+	
+	----------------AFISARI----------------
+	PROCEDURE afisare_camere_indisponibile IS
+	BEGIN
+	  FOR c1_record IN (SELECT c.nr_camera AS camera, r.check_in AS checkIn, r.check_out AS checkOut
+						FROM camera c, rezervare r
+						WHERE c.nr_camera = r.camera_nr_camera) LOOP
+		dbms_output.put_line(&apos;Camera: &apos; || c1_record.camera || &apos; Perioada indisponibila: &apos; || c1_record.checkIn || &apos; - &apos; || c1_record.checkOut);
+	  END LOOP;
+	EXCEPTION
+	  WHEN NO_DATA_FOUND THEN
+		DBMS_OUTPUT.PUT_LINE(&apos;Nu exista camere!&apos;);
+	  WHEN OTHERS THEN
+		DBMS_OUTPUT.PUT_LINE(&apos;Eroare: &apos; || SQLERRM);
+	END afisare_camere_indisponibile;
+
+
+    FUNCTION get_tip_camera(p_nr_camera IN NUMBER) RETURN camera.tipul%type
+	IS
+		tip_camera camera.tipul%type;
+	BEGIN
+		SELECT tipul INTO tip_camera
+		FROM camera
+		WHERE nr_camera = p_nr_camera; 
+
+		RETURN tip_camera;
+	EXCEPTION
+		WHEN NO_DATA_FOUND THEN
+			RAISE_APPLICATION_ERROR(-20003, &apos;Nu existAa nicio camera cu numarul specificat in baza de date.&apos;);
+	END;
+	
+END pachet_camera;</source>
+</PackageOracle>

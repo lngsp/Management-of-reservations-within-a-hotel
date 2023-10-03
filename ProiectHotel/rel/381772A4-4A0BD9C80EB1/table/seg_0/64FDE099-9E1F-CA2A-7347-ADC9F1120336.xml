@@ -1,0 +1,131 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="64FDE099-9E1F-CA2A-7347-ADC9F1120336" name="Client">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>012ABAF4-38E6-A58E-059F-FB9BAE182F6B</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="cnp_c" id="E2E18F0B-061F-B68F-12A6-E0B07A6B2267">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>D4061D20-CE35-321A-C428-783D25D007C3</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>D7A2533D-0D25-D50A-E03B-C76E97FDD33A</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nume" id="569B447E-75F0-81A2-82E7-F37361C80AB4">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>7CEF2879-8699-DC4A-A536-0D52759980D1</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>93EBB745-944F-BF6A-7692-6C3EFAB8249E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="prenume" id="23AB9B5D-CEB8-19E1-56CE-49BC77998815">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>E74B6080-AD1D-B6D2-4E76-0EA2962BAFA9</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>93EBB745-944F-BF6A-7692-6C3EFAB8249E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="telefon" id="3B9B3743-8F1F-C145-3AE6-993E985F5A16">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>E242F2C6-45CF-4ACF-0494-4631456320B0</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>2ABDCA09-CDC1-8D4E-1305-680B3FDFA46D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="email" id="8F661735-6028-54A3-C56E-C18779C4215A">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>02D81823-10BE-C5C5-6CBC-40CE2BAA5CAC</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<constraintName>email_c_ck</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="regexp_like(email, &apos;[a-z0-9._%-]+@[a-z0-9._%-]+\.[a-z]{2,4}&apos;)"/>
+</checkConstraint>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="adresa" id="D43D1DED-B05D-7EFD-1329-2737A7A66379">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>3F43354A-A870-7338-B507-A550D601D626</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D6DD8810-6B5E-4CF4-8C59-DEB3791D2CBA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="varsta" id="7446A177-2648-6CBC-AE2F-57D9F3FB4ECC">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>5F937206-3856-9795-26A5-E8667FDE2319</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BF15B901-BA20-1A3A-BED9-51058A548E41" name="Client_PK">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>9371624C-E05C-8A1A-B1C6-0E886B248F2C</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E2E18F0B-061F-B68F-12A6-E0B07A6B2267"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B19CB151-3D2B-6596-E19C-593060956E3F" name="Client_telefon_UN">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>EE02B1EB-2CC1-30B9-813B-36C0FF158757</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3B9B3743-8F1F-C145-3AE6-993E985F5A16"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6E365B50-0998-FD15-5370-A8F5C8175F7E" name="Client_email_UN">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>4A485F26-312E-7D2C-A56B-C802E34BD0B4</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8F661735-6028-54A3-C56E-C18779C4215A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

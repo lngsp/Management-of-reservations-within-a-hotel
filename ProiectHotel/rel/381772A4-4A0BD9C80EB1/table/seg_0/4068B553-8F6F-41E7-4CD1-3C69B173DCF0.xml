@@ -1,0 +1,170 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4068B553-8F6F-41E7-4CD1-3C69B173DCF0" name="Factura">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>32EC251F-2797-6A87-F2C0-2CC561681C39</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_fact" id="812CDB02-72E5-2E8D-EB29-2075FEA29A0E">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>3B534F2E-4A0C-D19F-777E-3B9DD7B42975</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>32674E16-8CD4-1F73-4061-5416E97280C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="data_facturarii" id="81178333-9345-BAFD-9C19-F6AA46BD9CB9">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>80EC85EA-BC48-A3D6-2925-3B7E4134CADA</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="suma_totala" id="E4139B2B-55F4-C69F-6786-03224AA650AA">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>5C1068B8-CF2C-D954-ED03-0C21775AFE9A</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<constraintName>suma_totala_ck</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="suma_totala &gt; 0"/>
+</checkConstraint>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="avans" id="033B237B-5A0F-04F1-3E28-E421CC18B280">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>99C7567E-ADAB-A508-307D-A7E11D96D855</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<constraintName>avans_ck</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="avans &gt;= 0"/>
+</checkConstraint>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cif" id="165CC598-F3B5-15A6-D35E-0A34558020DD">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Codul de identificare fiscală]]></commentInRDBMS>
+<generatorID>65C49069-3E2B-0692-9BA1-3C9D137B8A99</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<constraintName>cif_ck</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>12</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="REGEXP_LIKE(cif, &apos;^RO[0-9]{9}[A-Z]$&apos;)"/>
+</checkConstraint>
+<ownDataTypeParameters>12,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="metoda_de_plata" id="5E143187-5CC6-4989-B3C4-A63D3217DE0E">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>6095813C-D3D7-10FE-DA72-14443252256F</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<constraintName>metoda_plata_ck</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25</dataTypeSize>
+<listOfValues>
+<valueDef value="Bonuri" description="Bonuri de vacanta"/>
+<valueDef value="Card" description="Card"/>
+<valueDef value="Cash" description="Cash"/>
+</listOfValues>
+<ownDataTypeParameters>25,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Rezervare_id_rez" id="E72B19BC-13B3-0701-C201-3EC9ECB758BA">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>744827C9-DB79-9979-92BE-193F97C38501</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>32674E16-8CD4-1F73-4061-5416E97280C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DB42E75F-AB35-1800-8A79-4C9A399C7B7E" referredColumn="8DC683A8-3707-AAAA-8C6C-BE7B098BD649"/>
+</associations>
+</Column>
+<Column name="Rezervare_Camera_nr_camera" id="0656ABD4-F17C-2785-2F6C-A18BA7695B13">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>F7438905-7883-0B9A-9460-D478FDD98D5F</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DB42E75F-AB35-1800-8A79-4C9A399C7B7E" referredColumn="95134319-0433-3FD8-1550-B70442479C45"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5CD70BD2-E70E-834F-C4B6-A02C21E1D5DC" name="Factura_PK">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>D9CE19BE-C411-2A91-FD2C-DB1D203B58DF</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="812CDB02-72E5-2E8D-EB29-2075FEA29A0E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="66D5AD66-FFBE-9A3C-5A1F-89B8FA7470E8" name="Factura__IDX">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>6929C7D8-3BE8-B83C-E54C-39C451EF6E2D</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="E72B19BC-13B3-0701-C201-3EC9ECB758BA"/>
+<colUsage columnID="0656ABD4-F17C-2785-2F6C-A18BA7695B13"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="61B55CBB-EAA5-3874-18BD-1EF44EEAA128" name="Factura_Rezervare_FK">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>6929C7D8-3BE8-B83C-E54C-39C451EF6E2D</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E72B19BC-13B3-0701-C201-3EC9ECB758BA"/>
+<colUsage columnID="0656ABD4-F17C-2785-2F6C-A18BA7695B13"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

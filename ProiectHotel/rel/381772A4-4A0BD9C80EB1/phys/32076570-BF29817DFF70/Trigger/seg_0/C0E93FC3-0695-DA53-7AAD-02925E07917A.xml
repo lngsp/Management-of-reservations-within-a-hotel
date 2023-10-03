@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="trigger_check_email" directorySegmentName="seg_0" id="C0E93FC3-0695-DA53-7AAD-02925E07917A">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-29 09:33:14 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[DECLARE
+BEGIN
+    IF REGEXP_LIKE(:NEW.email, '[a-z0-9._%-]+@[a-z0-9._%-]+\.[a-z]{2,4}') = FALSE THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Adresa de email nu are un format valid!');
+    END IF;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>3E24ACA5-266D-1C33-F39E-89C38AA19C6F</columns>
+<table>32A634EF-6352-7EC8-CE3B-31924081BDD5</table>
+</TriggerOraclev10g>

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="rez_fact_rel" directorySegmentName="seg_0" id="6929C7D8-3BE8-B83C-E54C-39C451EF6E2D">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-27 12:41:18 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<sourcePk>F86F91D7-B8C8-426D-9762-8F22A0BB54BB</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>670F6253-B360-609F-D05D-1223289BA7A2</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>32EC251F-2797-6A87-F2C0-2CC561681C39</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

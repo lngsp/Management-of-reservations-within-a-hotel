@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="rez_cam_rel" directorySegmentName="seg_0" id="8CC291E1-E9A8-D6E1-0DD9-0716F40D91DC">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-28 06:59:06 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<engineerTo>
+<item key="381772A4-1F1D-503B-606F-4A0BD9C80EB1" value="true"/>
+</engineerTo>
+<sourcePk>54943A78-1C62-7AC8-90E8-43B16B05B158</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>9AEC5B5E-01D5-E4B2-6AEE-057E09291BBD</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>670F6253-B360-609F-D05D-1223289BA7A2</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

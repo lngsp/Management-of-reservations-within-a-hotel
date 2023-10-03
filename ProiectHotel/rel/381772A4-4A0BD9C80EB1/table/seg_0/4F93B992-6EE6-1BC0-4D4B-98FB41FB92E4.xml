@@ -1,0 +1,151 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4F93B992-6EE6-1BC0-4D4B-98FB41FB92E4" name="Rezervare">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>670F6253-B360-609F-D05D-1223289BA7A2</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_rez" id="8DC683A8-3707-AAAA-8C6C-BE7B098BD649">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>15E5B66E-C157-D519-1CA3-C22AC2E509C5</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>32674E16-8CD4-1F73-4061-5416E97280C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="check_in" id="FCAC46D3-8E9D-A705-BE91-44215D89148E">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>F3EB89AF-539E-82F0-268B-275DA2EA3D1A</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="check_out" id="5A5E6DB9-15D6-004C-8798-73F6165C2705">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>2E34E0E0-A97A-DEF5-A67F-AA0A4B9EB4F8</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nr_persoane" id="5ECD8CB1-F1C8-8607-4CF8-A3844FB07634">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>3F4BBA3B-1D3D-4434-EA5F-003A4F7D0259</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<ownDataTypeParameters>,1,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Client_cnp_c" id="AFDD725A-8128-CCA0-F9A5-83ECFF6C73CB">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>02DC5D91-F581-00E0-444C-48B0E7ACFDBF</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>D7A2533D-0D25-D50A-E03B-C76E97FDD33A</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="248AB512-212E-DE3D-CDEB-46A634C3BA78" referredColumn="E2E18F0B-061F-B68F-12A6-E0B07A6B2267"/>
+</associations>
+</Column>
+<Column name="Receptionist_id_angj" id="2B164A53-DFFA-6778-8A5D-2A9562537128">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>B1294CAA-96C5-627D-829F-F2EDBB625F82</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>32674E16-8CD4-1F73-4061-5416E97280C3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="153B5AF3-59A2-CBBB-FD17-008BD49050F2" referredColumn="678EDDD1-C4E5-17DA-0C97-A6083C7EF167"/>
+</associations>
+</Column>
+<Column name="Camera_nr_camera" id="95134319-0433-3FD8-1550-B70442479C45">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>C17A1866-7783-7C48-5F69-A0C18AB4B15D</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="50ED45CA-EA14-EFCA-7F74-CF498935138F" referredColumn="EF2AB2F5-E827-10BB-59FD-EF2D82B5D89D"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E2074860-97A9-946D-C7B1-44B2E670CA4D" name="Rezervare_PK">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>F86F91D7-B8C8-426D-9762-8F22A0BB54BB</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8DC683A8-3707-AAAA-8C6C-BE7B098BD649"/>
+<colUsage columnID="95134319-0433-3FD8-1550-B70442479C45"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="34E42FCC-A5DD-23FB-BB9E-CA7C4F0C5F24" name="Rezervare_Camera_FK">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>8CC291E1-E9A8-D6E1-0DD9-0716F40D91DC</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="95134319-0433-3FD8-1550-B70442479C45"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="26E5A7C4-C87C-CE1A-63B1-08ACDB7AABB3" name="Rezervare_Client_FK">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>842864B3-E3CD-C092-8700-1304BEACAEC2</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AFDD725A-8128-CCA0-F9A5-83ECFF6C73CB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="13E83740-04EF-CF50-1B74-D5FD4A63F50D" name="Rezervare_Receptionist_FK">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-30 11:29:05 UTC</createdTime>
+<generatorID>708B9178-52B8-C349-E391-17DD63979A91</generatorID>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2B164A53-DFFA-6778-8A5D-2A9562537128"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

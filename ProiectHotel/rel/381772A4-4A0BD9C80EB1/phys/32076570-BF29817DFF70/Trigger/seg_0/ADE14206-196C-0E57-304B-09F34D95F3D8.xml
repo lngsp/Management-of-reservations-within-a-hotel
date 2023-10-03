@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="trigger_check_varsta" directorySegmentName="seg_0" id="ADE14206-196C-0E57-304B-09F34D95F3D8">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-29 09:31:36 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[DECLARE
+BEGIN
+    IF :NEW.varsta < 18 THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Clientul trebuie sa fie major!');
+	END IF;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>6D0C3003-8D09-2A60-3E69-BC4A4135EF0D</columns>
+<table>32A634EF-6352-7EC8-CE3B-31924081BDD5</table>
+</TriggerOraclev10g>

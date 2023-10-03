@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="trigger_check_nr_pers" directorySegmentName="seg_0" id="BE041A34-367C-8E1D-DA9D-8361D9098199">
+<createdBy>STEFANIA</createdBy>
+<createdTime>2023-05-28 17:45:09 UTC</createdTime>
+<ownerDesignName>ProiectHotel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[DECLARE
+BEGIN
+    IF :NEW.nr_persoane > 4 THEN
+		RAISE_APPLICATION_ERROR(-20000, 'Numarul de persoane ' || :NEW.nr_persoane || ' este prea mare pentru o singura camera!');
+	END IF;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<table>EC1BAD33-8385-09F0-342C-079D2E2EE6D5</table>
+</TriggerOraclev10g>
